@@ -6,10 +6,10 @@
 
 /* eslint-disable no-console */
 
-import { generate, extend } from "json-schema-faker";
-import { schema } from "./mockDataSchema";
-import fs from "fs";
-import chalk from "chalk";
+const { generate, extend } = require("json-schema-faker");
+const { schema } = require("./mockDataSchema");
+const fs = require("fs");
+const chalk = require("chalk");
 
 // Extend JSF with the fake libs you want to use.
 extend("faker", () => require("faker"));

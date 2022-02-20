@@ -14,4 +14,4 @@
 
 /* eslint-disable no-unused-vars */
 
-import fetch from "whatwg-fetch";
+const fetch = require("whatwg-fetch");
