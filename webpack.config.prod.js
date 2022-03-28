@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 export default {
   mode: "production",
@@ -27,13 +28,28 @@ export default {
       // using htmlWebpackPlugin.options.varName
       trackJSToken: "INSERT YOUR TOKEN HERE",
     }),
+
+    new CopyPlugin({
+      patterns: [
+        { from: "src/img", to: "images" },
+      ],
+    }),
   ],
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, use: ["babel-loader"] },
+      { 
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
+      },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
     ],
   },

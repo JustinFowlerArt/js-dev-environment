@@ -3,20 +3,12 @@ import getBaseUrl from "./baseUrl";
 
 const baseUrl = getBaseUrl();
 
-export function getUsers() {
-    return get("users");
-}
-
-export function deleteUser(id) {
-    return del(`users/${id}`);
-}
-
-function get(url) {
+function fetchData(url) {
     return fetch(baseUrl + url).then(onSuccess, onError);
 }
 
 // Can't call func delete since reserved word.
-function del(url) {
+function deleteData(url) {
     const request = new Request(baseUrl + url, {
         method: 'DELETE'
     });
@@ -30,4 +22,13 @@ function onSuccess(response) {
 
 function onError(error) {
     console.log(error); // eslint-disable-line no-console
+}
+
+
+export function getUsers() {
+    return fetchData("users");
+}
+
+export function deleteUser(id) {
+    return deleteData(`users/${id}`);
 }
