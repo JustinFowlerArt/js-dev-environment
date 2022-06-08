@@ -12,7 +12,7 @@ const fs = require("fs");
 const chalk = require("chalk");
 
 // Extend JSF with the fake libs you want to use.
-extend("faker", () => require("faker"));
+extend("faker", () => require("@faker-js/faker"));
 const json = JSON.stringify(generate(schema));
 
 fs.writeFile("./src/api/db.json", json, function (err) {
